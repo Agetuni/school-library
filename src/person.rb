@@ -1,7 +1,11 @@
-require './nameable'
-class Person < Nameable
+require './decorator'
+require './rental'
+
+class Person
   include Decorator
-  def initialize(age, name = 'Unknown', parent_permission: true)
+
+  # rubocop:disable Style/OptionalBooleanParameter
+  def initialize(age, name = 'Unknown', parent_permission = true)
     super()
     @id = rand(1..1000)
     @age = age
@@ -9,11 +13,14 @@ class Person < Nameable
     @parent_permission = parent_permission
     @rentals = []
   end
+  # rubocop:enable Style/OptionalBooleanParameter
+
   attr_reader :id
-  attr_accessor :name, :age, :rentals
+  attr_accessor :name, :age, :rentals, :parent_permission
 
   def can_use_services?
-    of_age? || @parent_permission == true
+    return true if of_age? || @parent_permission == true
+
     false
   end
 
@@ -28,6 +35,8 @@ class Person < Nameable
   private
 
   def of_age?
-    @age >= 18
+    return true if @age >= 18
+
+    false
   end
 end
