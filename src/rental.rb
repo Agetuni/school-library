@@ -7,5 +7,5 @@ class Rental
     @date = date
   end
 
-  attr_accessor :date
+  attr_accessor :date, :book, :person
 end
