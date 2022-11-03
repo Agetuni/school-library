@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-
 require './app'
 def main
   app = App.new
