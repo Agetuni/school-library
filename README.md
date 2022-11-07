@@ -20,6 +20,13 @@
 
 ## Authors
 
+👤 **Matias Aguirre**
+
+- GitHub: [@LokurasRlz](https://github.com/LokurasRlz)
+
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/)
+
+
 👤 **Alazar Yilma**
 
 - GitHub: [@Agetuni](https://github.com/Agetuni)
