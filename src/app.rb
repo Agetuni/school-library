@@ -3,7 +3,9 @@ require './teacher'
 require './book'
 require './rental'
 require './menu'
+
 # rubocop:disable Metrics/MethodLength
+
 class App < Menu
   def initialize
     super
