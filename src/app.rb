@@ -111,3 +111,5 @@ class App < Menu
     menu
   end
 end
+
+# rubocop:enable Metrics/MethodLength
