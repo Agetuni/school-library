@@ -3,16 +3,21 @@ require './teacher'
 require './book'
 require './rental'
 require './menu'
-
+require './file_manager'
 # rubocop:disable Metrics/MethodLength
 
 class App < Menu
+  include Persist
   def initialize
     super
     @user_choice = 0
     @person_list = []
     @book_list = []
     @rental_list = []
+    
+    @book_list = load_books
+    @person_list = load_people
+    @rental_list = load_rentals
   end
 
   def list_all_books

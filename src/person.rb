@@ -5,9 +5,10 @@ class Person
   include Decorator
 
   # rubocop:disable Style/OptionalBooleanParameter
-  def initialize(age, name = 'Unknown', parent_permission = true)
+  def initialize(age:, id:, name: 'Unknown', parent_permission: true)
     super()
-    @id = rand(1..1000)
+    @id=id
+    @id = rand(1..1000) if @id.nil?
     @age = age
     @name = name
     @parent_permission = parent_permission
@@ -28,8 +29,8 @@ class Person
     decorated_name(@name)
   end
 
-  def add_rental(date, book)
-    @rentals << Rental.new(book, self, date)
+  def add_rentals(person)
+    @rentals.push(person)
   end
 
   private
