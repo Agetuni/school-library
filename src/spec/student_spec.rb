@@ -21,7 +21,7 @@ describe Student do
     end
 
     it 'should print custom message' do
-      expect(person.play_hooky).to eq "¯\(ツ)/¯"
+      expect(person.play_hooky).to eq '¯(ツ)/¯'
     end
   end
 end
