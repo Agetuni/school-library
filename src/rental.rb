@@ -1,11 +1,17 @@
 class Rental
-  def initialize(book, person, date)
-    @book = book
-    book.rentals << self unless book.rentals.include?(self)
-    @person = person
-    person.rentals << self unless person.rentals.include?(self)
+  attr_accessor :date, :book, :person
+
+  def initialize(date, book, person)
     @date = date
+
+    @book = book
+    book.rentals << self
+
+    @person = person
+    person.rentals << self
   end
 
-  attr_accessor :date, :book, :person
+  def to_s
+    "Date: #{@date}, Book: \"#{book.title}\" by #{@book.author}"
+  end
 end

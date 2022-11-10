@@ -1,43 +1,40 @@
-require './decorator'
-require './rental'
+require_relative 'decorator'
 
 class Person
-  include Decorator
-
-  # rubocop:disable Style/OptionalBooleanParameter
-  def initialize(age:, id:, name: 'Unknown', parent_permission: true)
-    super()
-    @id=id
-    @id = rand(1..1000) if @id.nil?
-    @age = age
-    @name = name
-    @parent_permission = parent_permission
-    @rentals = []
-  end
-  # rubocop:enable Style/OptionalBooleanParameter
-
+  attr_accessor :name, :age, :parent_permission, :rentals
   attr_reader :id
-  attr_accessor :name, :age, :rentals, :parent_permission
 
-  def can_use_services?
-    return true if of_age? || @parent_permission == true
-
-    false
-  end
-
-  def correct_name
-    decorated_name(@name)
+  def initialize(id:, age:, name: 'Unknown', parent_permission: true)
+    @id = id
+    @id = Random.rand(1..1000) if @id.nil?
+    @name = name
+    @age = age
+    @parent_permission = parent_permission
+    @corrector = Corrector.new
+    @rentals = []
   end
 
   def add_rentals(person)
     @rentals.push(person)
   end
 
+  def validate_name
+    @name = @corrector.correct_name(@name)
+  end
+
   private
 
   def of_age?
-    return true if @age >= 18
+    @age >= 18
+  end
 
-    false
+  public
+
+  def can_use_services?
+    of_age? || @parent_permission
+  end
+
+  def to_s
+    "Name: #{@name}, ID: #{@id}, Age: #{@age}"
   end
 end
